@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
     <title>Recipe App||</title>
   </head>
   <body>
@@ -21,49 +21,12 @@
       </header>
       <div class="fav-container">
         <h3>Favorite Meals</h3>
-        <ul class="fav-meals">
-          <li>
-            <img
-              src="https://www.themealdb.com/images/ingredients/Lime.png"
-              alt=""
-            /><span>Lime</span>
-          </li>
-          <li>
-            <img
-              src="https://www.themealdb.com/images/media/meals/rwuyqx1511383174.jpg"
-              alt=""
-            /><span>Pancakes</span>
-          </li>
-          <li>
-            <img
-              src="https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg/preview"
-              alt=""
-            /><span>Carbonara</span>
-          </li>
-          <li>
-            <img
-              src="https:\/\/www.themealdb.com\/images\/media\/meals\/1529445434.jpg"
-              alt=""
-            /><span>Pasta</span>
-          </li>
+        <ul class="fav-meals" id="fav-meals">
+         
         </ul>
       </div>
-      <div class="meals">
-        <div class="meal">
-          <div class="meal-header">
-            <span class="random"> Random Recipe </span>
-            <img
-              src="https://www.themealdb.com/images/media/meals/rwuyqx1511383174.jpg"
-              alt=""
-            />
-          </div>
-          <div class="meal-body">
-            <h4>Veggie Veggies</h4>
-            <button class="fav-btn">
-              <i class="fas fa-heart"></i>
-            </button>
-          </div>
-        </div>
+      <div class="meals" id="meals">
+        
       </div>
     </div>
   </body>
