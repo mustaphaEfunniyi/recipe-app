@@ -1,5 +1,7 @@
-const meals = document.getElementById("meals");
+const mealsEl = document.getElementById("meals");
 const favoriteCoontainer = document.getElementById("fav-meals");
+const searchTerm = document.getElementById("search-term");
+const searchBtn = document.getElementById("search");
 
 getRandomMeal();
 fetchFavMeals();
@@ -23,7 +25,12 @@ async function getMealById(id) {
 }
 
 async function getMealBySearch(term) {
-    const meals = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + term);
+    const res = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + term);
+
+    const resData = await res.json();
+    const meals = resData.meals;
+
+    return meals;
 }
 
 function addMeal(mealData, random = false) {
@@ -57,8 +64,6 @@ function addMeal(mealData, random = false) {
         }
     })
 
-    //*Clean the Container
-    favoriteCoontainer.innerHTML = "";
     fetchFavMeals();
 
     meals.appendChild(meal);
@@ -83,6 +88,9 @@ function getMealFromLocalStorage() {
 }
 
 async function fetchFavMeals() {
+    //*Clean the Container
+    favoriteCoontainer.innerHTML = "";
+
     const mealIds = getMealFromLocalStorage();
 
     for (let i = 0; i < mealIds.length; i++) {
@@ -91,7 +99,7 @@ async function fetchFavMeals() {
         meal = await getMealById(mealId);
 
         addMealToFav(meal);
-    }
+    } 
 
     console.log(meals);
 }
@@ -104,7 +112,31 @@ function addMealToFav(mealData) {
             src="${mealData.strMealThumb}"
             alt="${mealData.strMeal}"
         /><span>${mealData.strMeal}</span>
+        <button class="clear"><i class="fas fa-window-close"></i></button>
     `;
+
+    const btn = favMeal.querySelector(".clear");
+
+    btn.addEventListener('click', () => {
+        removeMealFromLocalStorage(mealData.idMeal);
+
+        fetchFavMeals();
+    })
 
     favoriteCoontainer.appendChild(favMeal);
 }
+
+searchBtn.addEventListener('click', async () => {
+    // * Clean Container
+    mealsEl.innerHTML = "";
+
+    const search = searchTerm.value;
+    const meals = await getMealBySearch(search);
+
+    if (meals) {
+        meals.forEach(meal => {
+            addMeal(meal);
+        });
+    }
+
+});
