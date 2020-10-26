@@ -11,12 +11,12 @@
     />
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
-    <title>Recipe App||</title>
+    <title>Recipes App</title>
   </head>
   <body>
     <div class="mobile-container">
       <header>
-        <input type="text" name="" id="search-term" />
+        <input type="text" name="" id="search-term" placeholder="search"/>
         <button id="search"><i class="fas fa-search"></i></button>
       </header>
       <div class="fav-container">
@@ -30,16 +30,15 @@
       </div>
     </div>
 
-    <div class="meal-info-container">
-      <div class="meal-info" id="meal-info">
-          <h1>Meal title</h1>
-          <img src="" alt="">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi eius atque veniam eum eligendi voluptatibus quae molestiae consectetur sint expedita?</p>
-          <ul>
-            <li>Ing 000/ Measure</li>
-            <li>Ing 000/ Measure</li>
-            <li>Ing 000/ Measure</li>
-          </ul>
+    <div class="popup-container hidden" id="meal-popup">
+      <div class="popup">
+        <button id="close-popup" class="close-popup">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="meal-info" id="meal-info">
+          
+        </div>
+          
       </div>
     </div>
 
